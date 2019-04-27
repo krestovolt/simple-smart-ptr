@@ -1,0 +1,34 @@
+# Inspired from https://github.com/bast/gtest-demo/
+
+# Download and unpack googletest at configure time
+macro(gtest_setup _download_module_path _download_root)
+    set(GOOGLETEST_DOWNLOAD_ROOT ${_download_root})
+    configure_file(
+      ${_download_module_path}/gtest-download.cmake
+      ${_download_root}/CMakeLists.txt
+      @ONLY
+    )
+    unset(GOOGLETEST_DOWNLOAD_ROOT)
+
+    execute_process(
+      COMMAND
+        "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
+        WORKING_DIRECTORY
+        ${_download_root}
+    )
+    execute_process(
+      COMMAND
+        "${CMAKE_COMMAND}" --build .
+        WORKING_DIRECTORY
+        ${_download_root}
+    )
+
+    # adds the targerts: gtest, gtest_main, gmock, gmock_main
+    add_subdirectory(
+      ${_download_root}/googletest-src
+      ${_download_root}/googletest-build
+    )
+
+    # include_directories("${_download_root}/googletest-src/googletest/include")
+    
+endmacro()
