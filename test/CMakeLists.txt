@@ -9,13 +9,15 @@ add_executable(
 
 target_link_libraries(
   unit_tests
-  gtest
-  ${OUTPUT_LIB}
+  PUBLIC
+    gtest
+  PRIVATE
+    ${OUTPUT_LIB}
 )
 
 add_test(
   NAME
-    unit
+    ${OUTPUT_LIB}_tests
   COMMAND
     ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/unit_tests
 )

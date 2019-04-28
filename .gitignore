@@ -27,6 +27,12 @@
 *.out
 *.app
 
+# Code Coverage Report
+coverage/
+*.info
+
+# Build Directory
 build/
 
+# vscode Cache
 .vscode/ipch/
