@@ -1,7 +1,7 @@
 #include "ref_counter.h"
 
-lib::RefCounter::RefCounter() { count = 1; }
+libk::RefCounter::RefCounter() { _count = 1; }
 
-void lib::RefCounter::keep() { count++; }
+void libk::RefCounter::keep() { _count++; }
 
-uint8_t lib::RefCounter::release() { return count == 0 ? count : --count; }
+uint8_t libk::RefCounter::release() { return _count == 0 ? _count : --_count; }

@@ -2,11 +2,11 @@
 #define REF_COUNTER_H
 #include <stdint.h>
 
-namespace lib {
+namespace libk {
 
 class RefCounter {
 private:
-  uint8_t count;
+  uint8_t _count;
 
 public:
   RefCounter();
@@ -14,6 +14,6 @@ public:
   uint8_t release();
 };
 
-} // namespace lib
+} // namespace libk
 
 #endif
