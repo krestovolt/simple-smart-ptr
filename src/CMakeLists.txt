@@ -3,7 +3,7 @@ file(GLOB STATIC_LIB_SRC
 )
 
 file(GLOB STATIC_LIB_H
-    "*.h"
+    "*.(h|hpp)"
 )
 
 ADD_LIBRARY(

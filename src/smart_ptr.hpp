@@ -1,6 +1,29 @@
-#ifndef SMART_PTR_TPP
-#define SMART_PTR_TPP
-#include "smart_ptr.h"
+#ifndef SMART_PTR_H
+#define SMART_PTR_H
+#include "ref_counter.h"
+
+namespace lib {
+
+template <typename T> class SmartPtr {
+private:
+  T *data_ptr;
+  RefCounter *reference;
+
+public:
+  SmartPtr();
+  SmartPtr(T *);
+  SmartPtr(const SmartPtr<T> &);
+  ~SmartPtr();
+  RefCounter *ref() const;
+  T *ptr() const;
+  T &operator*();
+  T *operator->();
+  SmartPtr<T> &operator=(const SmartPtr<T> &);
+};
+
+} // namespace lib
+
+/** Implementation of lib::SmartPtr **/
 
 template <typename T> lib::SmartPtr<T>::SmartPtr() {
   data_ptr = new T();
