@@ -1,10 +1,10 @@
 language: cpp
+
 os: linux
-compiler: gcc
 
 cache: # see https://docs.travis-ci.com/user/caching/
 - directories:
- - $HOME/.cache
+  - $HOME/.cache
 
 addons:
   apt:
