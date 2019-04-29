@@ -45,6 +45,7 @@ add_subdirectory(src)
 
 option(BUILD_TESTING "Build the testing tree." ON)
 
-enable_testing()
-
-add_subdirectory(test)
+if (BUILD_TESTING)
+  enable_testing()
+  add_subdirectory(test)
+endif()

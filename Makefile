@@ -16,6 +16,11 @@ all: ./build/Makefile
 	@- lcov --remove $(OUTPUT_COVERAGE) "/usr*" "*/build/*" -o $(OUTPUT_COVERAGE)
 	@	 lcov --list $(OUTPUT_COVERAGE)
 
+ci: ./build/Makefile
+	@  echo "[INFO] Running build with $(PROC) cores"
+	@  cd build && cmake --build . --config Debug -- -j $(PROC) && \
+		 GTEST_COLOR=1 ctest -VV -j $(PROC) --output-on-failure
+
 ./build/Makefile:
 	@  ($(MKDIR) build > /dev/null)
 	@  (cd build > /dev/null 2>&1 && cmake $(CMAKE_FLAGS) ..)
@@ -43,7 +48,7 @@ distclean:
 	@- $(RM) ./build/*.txt
 	@- $(RM) ./build/lib/lib$(OUTPUT_LIB).a
 
-ifeq ($(filter $(MAKECMDGOALS), distclean libclean),)
+ifeq ($(filter $(MAKECMDGOALS), distclean libclean ci),)
 
     $(MAKECMDGOALS): ./build/Makefile
 	@ $(MAKE) -C build $(MAKECMDGOALS)
