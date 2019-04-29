@@ -3,32 +3,32 @@ os: linux
 compiler: gcc
 
 cache: # see https://docs.travis-ci.com/user/caching/
-  - directories:
-    - $HOME/.cache
+- directories:
+ - $HOME/.cache
 
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-6
-      - lcov
+    - g++-6
+    - lcov
 
 compiler:
-  - gcc
+- gcc
 
 install:
-  - mkdir -p $HOME/.cache
+- mkdir -p $HOME/.cache
 
 script:
-  - CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 make ci
+- CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 make ci
 
 after_success:
-  - lcov --base-directory . --directory . -c -o coverage.info
-  - lcov --remove coverage.info "/usr*" "*/build/*" -o coverage.info
-  -	lcov --list coverage.info
-  - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
+- lcov --base-directory . --directory . -c -o coverage.info
+- lcov --remove coverage.info "/usr*" "*/build/*" -o coverage.info
+- lcov --list coverage.info
+- bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
 
 notifications:
   email:
-    - kautsar.ab@gmail.com
+  - kautsar.ab@gmail.com
