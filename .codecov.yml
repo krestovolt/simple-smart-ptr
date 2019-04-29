@@ -26,6 +26,6 @@ comment:
   require_changes: no
 
 ignore:
-- "*/test/*"
-- "*/build/*"
-- "*/usr/*"
+- "**/test/.*"
+- "**/build/.*"
+- "**/usr/.*"
